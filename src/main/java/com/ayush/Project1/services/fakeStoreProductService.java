@@ -1,10 +1,7 @@
 package com.ayush.Project1.services;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.*;
 
 import com.ayush.Project1.dtos.fakeStoreProductDTO;
@@ -34,7 +31,19 @@ public class fakeStoreProductService implements Productservice{
     }
 
     public List<Product> getAllProducts(){
-        return null;
+
+        fakeStoreProductDTO[] fakeStoreProductDTOs = restTemplate.getForObject(
+            "https://fakestoreapi.com/products", 
+            fakeStoreProductDTO[].class //deserialization converting json object to java object
+
+        );
+        List<Product> products = new ArrayList<>();
+        for(fakeStoreProductDTO fakeStoreProductDTO: fakeStoreProductDTOs)
+        {
+            products.add(convertFakeStoreProductDtoToProduct(fakeStoreProductDTO));
+        }
+
+        return products;
     }
 
     public Product createProduct(Product product){

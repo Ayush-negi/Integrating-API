@@ -14,8 +14,16 @@ import com.ayush.Project1.models.Product;
 @Service
 public class fakeStoreProductService implements Productservice{
 
+
+    private RestTemplate restTemplate;
+
+    public fakeStoreProductService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    
+    }
+
     public Product getSingleProduct(long productID){
-        RestTemplate restTemplate = new RestTemplate();
+        //RestTemplate restTemplate = new RestTemplate();  // now we have introduced a beam and we are declaring only one resttemplate object to avoid duplication. this is part of upgradeation.
 
         fakeStoreProductDTO fakeStoreProductDTO = restTemplate.getForObject(
             "https://fakestoreapi.com/products/" + productID, 

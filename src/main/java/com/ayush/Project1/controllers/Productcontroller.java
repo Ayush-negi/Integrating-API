@@ -3,7 +3,10 @@ package com.ayush.Project1.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ayush.Project1.models.Product;
+import com.ayush.Project1.services.Productservice;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,20 +26,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 public class Productcontroller {
 
+
+    private Productservice productservice;
+
+    public Productcontroller(Productservice productservice)
+    {
+        this.productservice = productservice;
+    }
+
+
     @GetMapping("/{id}")
     public Product getSingleProduct(@PathVariable("id") long id)
     {
-        return new Product();
+        return productservice.getSingleProduct(id);
 
     }
 
     @GetMapping
-    public ArrayList<Product> getAllProducts(){
+    public List<Product> getAllProducts(){
         return new ArrayList<>();
     }
 
     @PostMapping
-    public Product createProduct() {
+    public Product createProduct(@RequestBody Product product) {
 
         return new Product();
     }

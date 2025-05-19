@@ -24,13 +24,13 @@ public class fakeStoreProductService implements Productservice{
     {
         //RestTemplate restTemplate = new RestTemplate();  // now we have introduced a beam and we are declaring only one resttemplate object to avoid duplication. this is part of upgradeation.
 
-    //     fakeStoreProductDTO fakeStoreProductDTO = restTemplate.getForObject(
-    //         "https://fakestoreapi.com/products/" + productID, 
-    //         fakeStoreProductDTO.class //deserialization converting json object to java object
+        fakeStoreProductDTO fakeStoreProductDTO = restTemplate.getForObject(
+            "https://fakestoreapi.com/products/" + productID, 
+            fakeStoreProductDTO.class //deserialization converting json object to java object
 
-    //     );
-    //     return convertFakeStoreProductDtoToProduct(fakeStoreProductDTO);
-            throw new ProductNotFoundException("Something went wrong");
+        );
+        return convertFakeStoreProductDtoToProduct(fakeStoreProductDTO);
+         //   throw new ProductNotFoundException("Something went wrong");
     }
 
     public List<Product> getAllProducts(){

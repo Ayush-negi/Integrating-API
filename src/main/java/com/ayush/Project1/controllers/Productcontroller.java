@@ -4,11 +4,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ayush.Project1.models.Product;
 import com.ayush.Project1.services.Productservice;
+import com.ayush.Project1.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,14 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import com.ayush.Project1.exceptions.ProductNotFoundException;
 
 
 
 @RestController
 @RequestMapping("/products")
 
-public class Productcontroller {
+public class Productcontroller 
+{
 
 
     private Productservice productservice;
@@ -36,9 +41,15 @@ public class Productcontroller {
 
 
     @GetMapping("/{id}")
-    public Product getSingleProduct(@PathVariable("id") long id)
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") long id) throws ProductNotFoundException
     {
-        return productservice.getSingleProduct(id);
+
+        try{
+            return new ResponseEntity<>(productservice.getSingleProduct(id) , HttpStatus.OK);
+        }
+        catch(RuntimeException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
     }
 

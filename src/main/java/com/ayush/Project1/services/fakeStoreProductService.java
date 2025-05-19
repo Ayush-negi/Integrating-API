@@ -7,6 +7,7 @@ import java.util.*;
 import com.ayush.Project1.dtos.fakeStoreProductDTO;
 import com.ayush.Project1.models.Category;
 import com.ayush.Project1.models.Product;
+import com.ayush.Project1.exceptions.ProductNotFoundException;
 
 @Service
 public class fakeStoreProductService implements Productservice{
@@ -19,15 +20,17 @@ public class fakeStoreProductService implements Productservice{
     
     }
 
-    public Product getSingleProduct(long productID){
+    public Product getSingleProduct(long productID) throws ProductNotFoundException
+    {
         //RestTemplate restTemplate = new RestTemplate();  // now we have introduced a beam and we are declaring only one resttemplate object to avoid duplication. this is part of upgradeation.
 
-        fakeStoreProductDTO fakeStoreProductDTO = restTemplate.getForObject(
-            "https://fakestoreapi.com/products/" + productID, 
-            fakeStoreProductDTO.class //deserialization converting json object to java object
+    //     fakeStoreProductDTO fakeStoreProductDTO = restTemplate.getForObject(
+    //         "https://fakestoreapi.com/products/" + productID, 
+    //         fakeStoreProductDTO.class //deserialization converting json object to java object
 
-        );
-        return convertFakeStoreProductDtoToProduct(fakeStoreProductDTO);
+    //     );
+    //     return convertFakeStoreProductDtoToProduct(fakeStoreProductDTO);
+            throw new ProductNotFoundException("Something went wrong");
     }
 
     public List<Product> getAllProducts(){

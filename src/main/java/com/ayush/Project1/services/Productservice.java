@@ -3,12 +3,12 @@ package com.ayush.Project1.services;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.ayush.Project1.exceptions.ProductNotFoundException;
 import com.ayush.Project1.models.Product;
 
 public interface Productservice {
 
-    Product getSingleProduct(long productID);
+    Product getSingleProduct(long productID) throws ProductNotFoundException;
 
     List<Product> getAllProducts();
 

@@ -1,4 +1,4 @@
-package com.ayush.Project1.models;
+package com.ayush.Project1.inheritance.mappedsuperclass;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,12 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public class Basemodel {
+
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // this is for auto incrementing the ID
-    private long id;
-    private long createdAt;
-    private long lastUpdatedAt;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String email;
+    private String password;
 
 }

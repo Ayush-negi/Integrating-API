@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity(name = "categories")
 public class Category extends Basemodel {
 
-    private String vlaue;
+    private String value;
 
 
 }

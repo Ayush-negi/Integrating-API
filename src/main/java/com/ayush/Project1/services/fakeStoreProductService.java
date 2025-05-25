@@ -9,7 +9,7 @@ import com.ayush.Project1.models.Category;
 import com.ayush.Project1.models.Product;
 import com.ayush.Project1.exceptions.ProductNotFoundException;
 
-@Service
+@Service("fakeStoreProductService")
 public class fakeStoreProductService implements Productservice{
 
 
@@ -74,7 +74,7 @@ public class fakeStoreProductService implements Productservice{
         product.setDescription(fakeStoreProductDTO.getDescription());
         product.setImage(fakeStoreProductDTO.getImage());
         product.setTitle(fakeStoreProductDTO.getTitle());
-        product.getCategory().setVlaue(fakeStoreProductDTO.getCategory());
+        product.getCategory().setValue(fakeStoreProductDTO.getCategory());
 
         return product;
 

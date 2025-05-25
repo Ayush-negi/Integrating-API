@@ -13,9 +13,9 @@ import lombok.Setter;
 public class Basemodel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // this is for auto incrementing the ID
-    private long id;
-    private long createdAt;
-    private long lastUpdatedAt;
+    private Long id;
+    private Long createdAt;
+    private Long lastUpdatedAt;
     
 
 }

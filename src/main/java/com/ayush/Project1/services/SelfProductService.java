@@ -20,9 +20,14 @@ public class SelfProductService implements Productservice{
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
 
+    public SelfProductService(ProductRepository productRepository,CategoryRepository categoryRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+    }
+
     @Override
     public Product getSingleProduct(long productID) throws ProductNotFoundException {
-        // TODO Auto-generated method stub
+
         Optional<Product> optionalProduct = productRepository.findById(productID);
 
 

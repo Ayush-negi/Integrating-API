@@ -13,8 +13,8 @@ import java.util.List;
 @Entity(name = "categories")
 public class Category extends Basemodel {
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
-    private List<Product> products;
+    // @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)   //this is to remove all the element associated with the category type in the products table
+    // private List<Product> products;
 
     private String value;
 

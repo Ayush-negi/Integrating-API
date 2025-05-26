@@ -47,28 +47,33 @@ public class SelfProductService implements Productservice{
     @Override
     public Product createProduct(Product product) {
 
-        if (product.getCategory() != null) {
+        // if (product.getCategory() != null) {
 
-            if (product.getCategory().getId() == null) {
+        //     if (product.getCategory().getId() == null) {
 
-               //Create a Category first.
-                Category category = product.getCategory();
+        //        //Create a Category first.
+        //         Category category = product.getCategory();
 
-                String categoryValue = category.getValue();
+        //         String categoryValue = category.getValue();
 
-                Optional<Category> optionalCategory = categoryRepository.findByValue(categoryValue);
+        //         Optional<Category> optionalCategory = categoryRepository.findByValue(categoryValue);
 
-                if (optionalCategory.isEmpty()) {
+        //         if (optionalCategory.isEmpty()) {
 
-                    category = categoryRepository.save(category);
-                    product.setCategory(category);
-                } else {
-                    product.setCategory(optionalCategory.get());
-                }
-            }
-        } else {
-            throw new RuntimeException("Category can't be empty while creating a Product.");
-        }
+        //             category = categoryRepository.save(category);
+        //             product.setCategory(category);
+        //         } else {
+        //             product.setCategory(optionalCategory.get());
+        //         }
+        //     }
+        // } else {
+        //     throw new RuntimeException("Category can't be empty while creating a Product.");
+        // }
+
+
+        // Very Very Important
+        // the reason we have commented above code is because it was used to save a new category which is not available before and it is being passed with the product but now we are using cascade . Presist it will automatically saved the category in case the category is compeletly new to us.
+        // this cascading is used in the product model.
         return productRepository.save(product);
     }
 

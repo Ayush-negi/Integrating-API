@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-
+// this is the base class all the models will inherit it.
 @Getter
 @Setter
 @MappedSuperclass
